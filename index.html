@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+    <html lang = "pl">
+        <head>
+            <style>
+                #gameInfo{
+                    height: 10vh;
+                    width: 20vh;
+                    margin:auto;
+                    margin-top: 5vh;
+                    padding: 10px;
+                }
+                #gameField{
+                    height: 70vh;
+                    width: 70vh;
+                    margin:auto;
+                }
+                #player{
+                    font-family: 'webdings';
+                    padding-left: 10px;
+                }
+                .info{
+                    height: 10vh;
+                    align-items: center;
+                    justify-content: center;
+                    display: flex;
+                    float: left;
+                    font-size: 5vh;
+                }
+                .tile{
+                    margin: 0px;
+                    border-style: solid;
+                    border-width: 1px;
+                    float: left;
+                    width: calc(70vh/3 - 2px);
+                    height: calc(70vh/3 - 2px);
+                    font-family: 'webdings';
+                    font-size: 15vh;
+                    align-items: center;
+                    justify-content: center;
+                    display: flex;
+                }
+            </style>
+        </head>
+        <body>
+            <div id = "gameInfo">
+                <div id = "gameState" class = "info">Gracz:</div>
+                <div id = "player" class = "info">n</div>
+            </div>
+            <div id = "gameField">
+                <div class = "tile" onclick = "clicked(this);" id = "1"></div>
+                <div class = "tile" onclick = "clicked(this);" id = "2"></div>
+                <div class = "tile" onclick = "clicked(this);" id = "3"></div>
+                <div class = "tile" onclick = "clicked(this);" id = "4"></div>
+                <div class = "tile" onclick = "clicked(this);" id = "5"></div>
+                <div class = "tile" onclick = "clicked(this);" id = "6"></div>
+                <div class = "tile" onclick = "clicked(this);" id = "7"></div>
+                <div class = "tile" onclick = "clicked(this);" id = "8"></div>
+                <div class = "tile" onclick = "clicked(this);" id = "9"></div>
+            </div>
+            <script>
+                let turn = 'n';
+                let gameWon = 0;
+                function clicked(e)
+                {
+                    if (gameWon == 1) return;
+                    e.innerHTML = turn;
+                    if (turn == 'n') turn = 'r';
+                    else turn = 'n';
+                    document.getElementById('player').innerHTML = turn;
+                    checkWinner();
+                }
+                function checkWinner(){
+                    let gameTable = document.querySelectorAll(".tile");
+                    if (gameTable[0].innerHTML.length != 0)
+                    {
+                        if (gameTable[0].innerHTML == gameTable[1].innerHTML && gameTable[0].innerHTML == gameTable[2].innerHTML)
+                        {
+                            gameTable[0].style.color = "green";
+                            gameTable[1].style.color = "green";
+                            gameTable[2].style.color = "green";
+                            gameWon = 1;
+                        }
+                        else if (gameTable[0].innerHTML == gameTable[3].innerHTML && gameTable[0].innerHTML == gameTable[6].innerHTML)
+                        {
+                            gameTable[0].style.color = "green";
+                            gameTable[3].style.color = "green";
+                            gameTable[6].style.color = "green";
+                            gameWon = 1;
+                        }
+                        else if (gameTable[0].innerHTML == gameTable[4].innerHTML && gameTable[0].innerHTML == gameTable[8].innerHTML)
+                        {
+                            gameTable[0].style.color = "green";
+                            gameTable[4].style.color = "green";
+                            gameTable[8].style.color = "green";
+                            gameWon = 1;
+                        }
+                    }
+                    if (gameTable[3].innerHTML.length != 0)
+                    {
+                        if (gameTable[3].innerHTML == gameTable[4].innerHTML && gameTable[3].innerHTML == gameTable[5].innerHTML)
+                        {
+                            gameTable[3].style.color = "green";
+                            gameTable[4].style.color = "green";
+                            gameTable[5].style.color = "green";
+                            gameWon = 1;
+                        }
+                    }
+                    if (gameTable[6].innerHTML.length != 0)
+                    {
+                        if (gameTable[6].innerHTML == gameTable[7].innerHTML && gameTable[6].innerHTML == gameTable[8].innerHTML)
+                        {
+                            gameTable[6].style.color = "green";
+                            gameTable[7].style.color = "green";
+                            gameTable[8].style.color = "green";
+                            gameWon = 1;
+                        }
+                    }
+                    if (gameTable[1].innerHTML.length != 0)
+                    {
+                        if (gameTable[1].innerHTML == gameTable[4].innerHTML && gameTable[1].innerHTML == gameTable[7].innerHTML)
+                        {
+                            gameTable[1].style.color = "green";
+                            gameTable[4].style.color = "green";
+                            gameTable[7].style.color = "green";
+                            gameWon = 1;
+                        }
+                    }
+                    if (gameTable[2].innerHTML.length != 0)
+                    {
+                        if (gameTable[2].innerHTML == gameTable[5].innerHTML && gameTable[2].innerHTML == gameTable[8].innerHTML)
+                        {
+                            gameTable[2].style.color = "green";
+                            gameTable[5].style.color = "green";
+                            gameTable[8].style.color = "green";
+                            gameWon = 1;
+                        }
+                        else if (gameTable[2].innerHTML == gameTable[4].innerHTML && gameTable[2].innerHTML == gameTable[6].innerHTML)
+                        {
+                            gameTable[2].style.color = "green";
+                            gameTable[4].style.color = "green";
+                            gameTable[6].style.color = "green";
+                            gameWon = 1;
+                        }
+                    }
+                    if (gameWon == 1)
+                    {
+                        document.getElementById('gameState').innerHTML = "Wygrany: ";
+                        document.getElementById('gameState').style.fontSize = "3vh";
+                        if (turn == 'n') document.getElementById('player').innerHTML = 'r';
+                        else document.getElementById('player').innerHTML = 'n';
+                    }
+                }
+                
+            </script>
+        </body>
+    </html>
