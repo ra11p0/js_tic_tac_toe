@@ -63,6 +63,7 @@
                 function clicked(e)
                 {
                     if (gameWon == 1) return;
+                    if (e.innerHTML.length != 0) return;
                     e.innerHTML = turn;
                     if (turn == 'n') turn = 'r';
                     else turn = 'n';
